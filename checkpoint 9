@@ -1,0 +1,172 @@
+
+// MARK: Optionals
+
+var username: String? = nil
+
+if let unwrappedName = username {
+    print("username is: \(unwrappedName)")
+} else {
+    print("there was nothing inside")
+}
+
+
+let num: Double? = 50
+
+if let num = num {
+    print(num + 111.1)
+}
+
+
+var myVar: Int? = nil
+
+func square(number: Int?) {
+    guard let number = number else {
+        print("No value inside")
+        return
+    }
+    print("\(number) * \(number) is: \(number * number)")
+}
+
+square(number: myVar)
+
+
+func isLongEnough(_ string: String?) -> Bool {
+    guard let string = string else { return false }
+    if string.count >= 8 {
+        return true
+    } else {
+        return false
+    }
+}
+if isLongEnough("Mario Odyssey") {
+    print("Let's play that!")
+}
+
+
+func validate (_ password: String?) -> Bool {
+    guard let password = password else {
+        return false
+    }
+    if password == "fro0utiea13223" {
+        print("Authenticated")
+        return true
+    }
+        return false
+    }
+
+
+validate("fro0utiea13223")
+
+
+func username(for id: Int?) -> String? {
+    guard let id = id else {
+        return nil
+    }
+    if id == 1989 {
+        return "Taylor Swift"
+    } else {
+        return nil
+    }
+}
+if let user = username(for: 1989) {
+    print("Hello, \(user)!")
+}
+
+
+func gift (found item: Bool?, name: String) {
+    guard let item = item else {
+        return
+    }
+    print("i found an \(name)")
+    print(item)
+}
+
+gift(found: true, name: "PS5")
+
+
+
+func salary (is int: Int?) -> String? {
+    guard let int = int else {
+        print("why is it empty ???")
+        return nil
+    }
+    if int >= 1000 {
+        return "that's too little"
+    } else {
+        return "nice salary, i can put away some of it to save for later"
+    }
+}
+
+
+salary(is: 800)
+
+
+// MARK: nil coalescing
+
+var tvShows: [String]? = nil
+var favTv = tvShows?.randomElement()?.uppercased() ?? "naruto"
+print(favTv)
+
+let input = "4"
+let number = Int(input) ?? 0
+print(number)
+
+
+struct Book{
+    var title: String
+    var author: String?
+}
+
+var book1: Book? = nil
+let author = book1?.author?.first?.uppercased() ?? "nothing"
+print(author)
+
+
+let names:[String]? = ["Taylor", "Paul", "Adele"]
+let lengthOfLast = names?.last?.count
+
+
+func albumReleased(in year: Int) -> String? {
+    switch year {
+    case 2006: return "Taylor Swift"
+    case 2008: return "Fearless"
+    case 2010: return "Speak Now"
+    case 2012: return "Red"
+    case 2014: return "1989"
+    case 2017: return "Reputation"
+    default: return nil
+    }
+}
+let album = albumReleased(in: 2006)?.uppercased()
+print(album!)
+
+// MARK: optional try
+enum error: Error{
+    case badid
+}
+func getUser (id: Int) throws -> String {
+    throw error.badid
+}
+
+
+    let user = (try? getUser(id: 23 )) ?? "Unknown"
+
+print(user)
+
+
+// if there weren't any errors -> we get optional value.
+// if there was error -> we get nil
+// or if we combine optional try with optional coalescing ?? -> then we get ?? "value"
+
+
+// MARK: Checkpoint 9
+
+var count: [Int]? = nil
+
+func checkArray(numbers: [Int]?) -> Int {
+    numbers?.randomElement() ?? Int.random(in: 1...100)
+}
+
+checkArray(numbers: count)
+
+
